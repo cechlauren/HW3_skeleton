@@ -42,46 +42,12 @@ def read_aa_sequence(filepath):
     # open .fa file
     with open(filepath, "r") as f:
         # iterate over each line in the file
-        part_sequence = f.readlines()
+        part_sequence = f.read().splitlines()  
+        
+    aa_sequence.part_sequence.append()
+       
+
+    return aa_sequence 
 
 
-    return active_site
 
-
-def write_clustering(filename, clusters):
-    """
-    Write the clustered ActiveSite instances out to a file.
-
-    Input: a filename and a clustering of ActiveSite instances
-    Output: none
-    """
-
-    out = open(filename, 'w')
-
-    for i in range(len(clusters)):
-        out.write("\nCluster %d\n--------------\n" % i)
-        for j in range(len(clusters[i])):
-            out.write("%s\n" % clusters[i][j])
-
-    out.close()
-
-
-def write_mult_clusterings(filename, clusterings):
-    """
-    Write a series of clusterings of ActiveSite instances out to a file.
-
-    Input: a filename and a list of clusterings of ActiveSite instances
-    Output: none
-    """
-
-    out = open(filename, 'w')
-
-    for i in range(len(clusterings)):
-        clusters = clusterings[i]
-
-        for j in range(len(clusters)):
-            out.write("\nCluster %d\n------------\n" % j)
-            for k in range(len(clusters[j])):
-                out.write("%s\n" % clusters[j][k])
-
-    out.close()
