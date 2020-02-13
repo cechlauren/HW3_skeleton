@@ -1,4 +1,5 @@
 import glob
+import itertools
 import os
 from .utils import Atom, Residue, ActiveSite
 
@@ -42,9 +43,11 @@ def read_aa_sequence(filepath):
     # open .fa file
     with open(filepath, "r") as f:
         # iterate over each line in the file
-        part_sequence = f.read().splitlines()  
-        
-    aa_sequence.partialsequence.append()
+        for line in itertools.islice(f, 0, 5):
+		part_sequence = f.read()
+  
+    part_sequence = ''.join(part_sequence.split())    
+    aa_sequence.partialsequence.append(part_sequence)
        
 
     return aa_sequence 
