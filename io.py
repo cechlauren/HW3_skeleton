@@ -44,7 +44,7 @@ def read_aa_sequence(filepath):
         # iterate over each line in the file
         part_sequence = f.read().splitlines()  
         
-    aa_sequence.part_sequence.append()
+    aa_sequence.partialsequence.append()
        
 
     return aa_sequence 
