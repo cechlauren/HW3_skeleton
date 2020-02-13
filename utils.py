@@ -27,14 +27,14 @@ class Residue:
     def __repr__(self):
         return "{0} {1}".format(self.type, self.number)
 
-class ActiveSite:
+class AASeq:
     """
-    A simple class for an active site
+    A simple class for an amino acid sequence
     """
 
     def __init__(self, name):
         self.name = name
-        self.residues = []
+        self.partialsequence = []
 
     # Overload the __repr__ operator to make printing simpler.
     def __repr__(self):
