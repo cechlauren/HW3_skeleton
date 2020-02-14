@@ -50,7 +50,7 @@ def read_aa_sequence(filepath):
     aa_sequence.partialsequence.append(part_sequence)
        
 
-    return aa_sequence 
+    return aa_sequence.partialsequence 
 
 
 
