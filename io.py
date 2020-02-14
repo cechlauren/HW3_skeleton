@@ -44,7 +44,7 @@ def read_aa_sequence(filepath):
     with open(filepath, "r") as f:
         # iterate over each line in the file
         for line in itertools.islice(f, 0, 5):
-		part_sequence = f.read()
+            part_sequence = f.read()
   
     part_sequence = ''.join(part_sequence.split())    
     aa_sequence.partialsequence.append(part_sequence)
