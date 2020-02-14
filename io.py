@@ -1,7 +1,7 @@
 import glob
 import itertools
 import os
-from .utils import Atom, Residue, ActiveSite
+from .utils import AASeq
 
 
 def read_aa_sequences(dir):
@@ -23,6 +23,24 @@ def read_aa_sequences(dir):
 
     return aa_sequences 
 
+def read_aa_sequences_names(dir):
+    """
+    Read in all of the protein sequences from the given directory.
+
+    Input: directory
+    Output: list of protein sequences
+    """
+    files = glob.glob(dir + '/*.fa')
+
+    aa_sequences = []
+    # iterate over each .fa file in the given directory
+    for filepath in glob.iglob(os.path.join(dir, "*.fa")):
+
+        aa_sequences.append(read_aa_sequence_name(filepath))
+
+    print("Read in %d amino acid sequences' names"%len(aa_sequences))
+
+    return aa_sequences
 
 def read_aa_sequence(filepath):
     """
@@ -51,6 +69,34 @@ def read_aa_sequence(filepath):
        
 
     return aa_sequence.partialsequence 
+
+
+def read_aa_sequence_name(filepath):
+    """
+    Read in a single amino acid sequence given a fasta file
+
+    Input: fasta file path
+    Output: amino acid sequence instance
+    """
+    basename = os.path.basename(filepath)
+    name = os.path.splitext(basename)
+
+    if name[1] != ".fa":
+        raise IOError("%s is not a fasta file"%filepath)
+
+    aa_sequence = AASeq(name[0])
+
+
+    # open .fa file
+    with open(filepath, "r") as f:
+        # iterate over each line in the file
+        for line in itertools.islice(f, 0, 5):
+            part_sequence = f.read() 
+    part_sequence = ''.join(part_sequence.split())    
+    aa_sequence.partialsequence.append(part_sequence)
+       
+
+    return aa_sequence
 
 
 
