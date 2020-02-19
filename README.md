@@ -1,4 +1,4 @@
-# example
+# Smith-Waterman
 
 [![Build
 Status](https://travis-ci.org/cechlauren/HW3_skeleton.svg?branch=master)](https://travis-ci.org/cechlauren/HW3_skeleton)
