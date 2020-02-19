@@ -5,7 +5,7 @@ import numpy as np
 
 
 
-def smithWaterman(a, b, substitutionmatrix, startcost, extendcost):
+def sw(a, b, substitutionmatrix, startcost, extendcost):
 
 	'''
 
