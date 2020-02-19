@@ -3,7 +3,11 @@ import itertools
 import os
 from .utils import AASeq
 
+#This top section of functions help me read in my sequences from the fasta files.
+#The final section is to get the lists of tuples of sequence strings belonging to the postiive and negative pairs.
 
+
+#for all sequences
 def read_aa_sequences(dir):
     """
     Read in all of the protein sequences from the given directory.
@@ -23,6 +27,7 @@ def read_aa_sequences(dir):
 
     return aa_sequences 
 
+#for all sequences' names
 def read_aa_sequences_names(dir):
     """
     Read in all of the protein sequences from the given directory.
@@ -42,6 +47,7 @@ def read_aa_sequences_names(dir):
 
     return aa_sequences
 
+#for one  sequence
 def read_aa_sequence(filepath):
     """
     Read in a single amino acid sequence given a fasta file
@@ -70,7 +76,7 @@ def read_aa_sequence(filepath):
 
     return aa_sequence.partialsequence 
 
-
+#for one  sequence name
 def read_aa_sequence_name(filepath):
     """
     Read in a single amino acid sequence given a fasta file
