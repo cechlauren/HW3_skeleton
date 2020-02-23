@@ -3,7 +3,7 @@
 [![Build
 Status](https://travis-ci.org/cechlauren/HW3_skeleton.svg?branch=master)](https://travis-ci.org/cechlauren/HW3_skeleton)
 
-Example python project with testing.
+Smith-Waterman-derived alignment project with testing.
 
 ## usage
 
@@ -21,7 +21,7 @@ conda install --yes --file requirements.txt
 ```
 
 to install all the dependencies in `requirements.txt`. Then the package's
-main function (located in `example/__main__.py`) can be run as follows
+main function (located in `HW3_skeleton/__main__.py`) can be run as follows
 
 ```
 python -m smith_waterman
