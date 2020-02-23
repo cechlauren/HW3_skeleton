@@ -116,49 +116,49 @@ def optimizeMatrix_geneticAlg(scorematrix, mutationChance, mutationAmount,
 	The function stops if it hits "totalItersToStop" iterations, or if it doesn't see
 	a new objective function value in the top (librarySize) in stepsWithNoImprovement steps.
 	The input of this function is the scorematrix, mutationChance, mutationAmount,		
-	selectivePressure, n= population size, 
+	selectivePressure, N= population size, 
 	"totalStepsToStop" =our runtime step cutoff, 
 	"stepsWithNoImprovement"= the step cutoff for seeing no new entries in library of best matrices,
-	librarySize= "number of best matrices to remember and re-seed population with",			
+	"librarySize"= number of best matrices to remember and re-seed population with,			
 	gap_start, gap_extend, true_pos_align, and finally true_neg_align.
 	
 	The function will return the final population of matrices, the scores for matrices at the last step taken,
 	the library of best matrices, and a list of the mean objective function value at each step taken.
 	'''
-	# initialize population
-	pop = [scorematrix.copy() for i in range(N)]
-	library = {}
-	libraryMin = float("-inf")
-	# loop, keeping track of change in objective function
-	objectiveMeans = []
-	noImprovementCounter = 0
+	#Begin by initializing the population of matrices
+	pop = [scorematrix.copy() for i in range(N)] #make a copy of the score matrix and designate each one in a new set called pop
+	library = {} #iniitalize the library that will remember the best matrices
+	libraryMin = float("-inf") #a bad one to compare to
+	#Make a loop to keeping track of any change in the objective function 
+	objectiveMeans = [] #will track the means
+	noImprovementCounter = 0 #make a counter
 	while True:
-		noImprovementCounter += 1
-		# mutate
+		noImprovementCounter += 1 #if there's no improvement then add a score
+		#Now we mutate the matrix based on those probabilities and distributions
 		pop = [mutateMatrix(m, mutationChance, mutationAmount) for m in pop]
-		# score
+		#And then score that matrix
 		scores = [scoreMatrix(true_pos_align, true_neg_align, m, gap_start, gap_extend) for m in pop]
-		# bank good ones
+		#We'll keep any of the good ones
 		for score, mat in zip(scores, pop):
-			if score > libraryMin:
-				if score not in library.keys():
-					noImprovementCounter = 0
-					library[score] = mat.copy()
-					if len(library) > librarySize:
+			if score > libraryMin: #better than the minimum
+				if score not in library.keys(): #if that score wasn't seen before then 
+					noImprovementCounter = 0 #back to square one
+					library[score] = mat.copy() #copy of the matrix
+					if len(library) > librarySize: 
 						libraryMin = min(library.keys())
-						del library[libraryMin]
+						del library[libraryMin] #we dont care about that worst case to keep track of
 						libraryMin = min(library.keys())
-		# assess.
-		objectiveMean = sum(scores)/N
+		#Now we assess how well it did
+		objectiveMean = sum(scores)/N #scores for that population of matrices
 		# print (len(objectiveMeans), objectiveMean, max(scores), max(library.keys()))
-		objectiveMeans.append(objectiveMean)
-		# Should we stop?
+		objectiveMeans.append(objectiveMean) #keeping track
+		#When to sto[
 		if len(objectiveMeans) > totalStepsToStop or noImprovementCounter > stepsWithNoImprovement:
 			break
-		# we're continuing. Let's make a new generation.
-		# Rescale objective to get weights
-		weights = scaleScores(scores, selectivePressure)
-		# select a new generation
+		#If all is good then we're continuing so make a new generation.
+		#Should re-scale objective to get the appropriate weights
+		weights = scaleScores(scores, selectivePressure) #recall selective pressure for that substitution
+		#Time to select a new generation
 		pop = selection(pop, weights)[:-len(library)] + [x.copy() for x in library.values()]
-		# seed with good ones
+		#Only seed with the good ones
 	return pop, scores, library, objectiveMeans
