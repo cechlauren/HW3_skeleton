@@ -1,7 +1,7 @@
 import sys
-import random
 import numpy as np
 from .sequences import *
+#from .matrices import blosum50
 from .smithwaterman import sw
 
 def getAlignments(scorematrix, gap_start, gap_extend):
