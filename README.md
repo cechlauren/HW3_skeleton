@@ -21,7 +21,7 @@ conda install --yes --file requirements.txt
 ```
 
 to install all the dependencies in `requirements.txt`. Then the package's
-main function (located in `HW3_skeleton/__main__.py`) can be run as follows
+main function (located in `HW3_skeleton/hw3align/__main__.py`) can be run as follows
 
 ```
 python -m smith_waterman
