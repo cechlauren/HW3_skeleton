@@ -9,8 +9,9 @@ def sw(a, b, substitutionmatrix, startcost, extendcost):
 
 	'''
 
-	uses smith-waterman to find a maximal local alignment.
-	we'll have a big table that has indices keeping track of the aligned 
+	This function uses Smith-Waterman to find a maximal local alignment between two 
+	sequences.
+	We'll have a big table that has indices keeping track of the aligned 
 	seq's beginning and ends. An ideal solution will only need to compute
 	each sub-alignment once, while providing coverage of the whole
 	search space.
@@ -41,56 +42,58 @@ def sw(a, b, substitutionmatrix, startcost, extendcost):
 
 	'''
 
-	# initialize our matrices and trace matrices
+	# initialize matrices and the trace matrices
 	#Local alignment initializes with top left =0
 
-	match = np.zeros(shape=(len(a) + 1, len(b) + 1))
+	match = np.zeros(shape=(len(a) + 1, len(b) + 1)) #size of best score matrix according to size of seq.
 
-	traceMatch = [["" for j in range(len(b)+ 1)] for i in range(len(a)+ 1)]
+	traceMatch = [["" for j in range(len(b)+ 1)] for i in range(len(a)+ 1)] #initialize trace
 
-	Y = np.zeros(shape=(len(a) + 1, len(b) + 1))
+	Y = np.zeros(shape=(len(a) + 1, len(b) + 1)) #initialize matrix to keep track of set "Y" matches
 
-	traceY = [["" for j in range(len(b)+ 1)] for i in range(len(a)+ 1)]
+	traceY = [["" for j in range(len(b)+ 1)] for i in range(len(a)+ 1)] #trace
 
-	X = np.zeros(shape=(len(a) + 1, len(b) + 1))
+	X = np.zeros(shape=(len(a) + 1, len(b) + 1)) #initialize matrix to keep track of "X" matches
 
-	traceX = [["" for j in range(len(b)+ 1)] for i in range(len(a)+ 1)]
+	traceX = [["" for j in range(len(b)+ 1)] for i in range(len(a)+ 1)] #trace
 
 	# we fill the first rows/columns of matrices to avoid alignments causing unusual edges
 
 	for i in range(len(a) + 1):
 
-		Y[i, 0] = float("-inf")
+		Y[i, 0] = float("-inf") #basically we dont want to match things that have no length
 
 		if i>0: 
 
-			X[i, 0] = startcost + extendcost*(i-1)
+			X[i, 0] = startcost + extendcost*(i-1) 
+			#if the length is greater than zero then we can start doing matches or gaps
 
 	for j in range(len(b) + 1):
 
-		X[0, j] = float("-inf")
+		X[0, j] = float("-inf") #basically we dont want to match things that have no length
 
 		if j>0:
 
 			Y[0, j] = startcost + extendcost*(j-1)
+			#if the length is greater than zero then we can start doing matches or gaps
 
-	# fill in matrices
+	#Fill in matrices by comparing each element in our sequences
 
-	maxSeen = (float("-inf"), (-1, -1)) # (score, (i,j))
+	maxSeen = (float("-inf"), (-1, -1)) # this is (score, (i,j))
 
-	for i in range(1, len(a) + 1):
+	for i in range(1, len(a) + 1): #go thru seq a
 
-		for j in range(1, len(b) + 1): 
+		for j in range(1, len(b) + 1):  #go thru seq b
 
-			extendX = X[i-1, j] + extendcost  # extend gap in b
+			extendX = X[i-1, j] + extendcost  # extend gap in b in matrix X
 
-			openX = match[i-1, j] + startcost # open gap in b
+			openX = match[i-1, j] + startcost # open gap in b in matrix X
 
 			if openX > extendX:
 
-				X[i,j] = openX
+				X[i,j] = openX #if start cost more than extend cost then score is start cost
 
-				traceX[i][j] = "openX"
+				traceX[i][j] = "openX" #trace starting from start cost
 
 			else:
 
@@ -98,13 +101,13 @@ def sw(a, b, substitutionmatrix, startcost, extendcost):
 
 				traceX[i][j] = "extendX"
 
-			extendY = Y[i, j-1] + extendcost  # extend gap in a
+			extendY = Y[i, j-1] + extendcost  # extend gap in a in matrix X
 
-			openY = match[i, j-1] + startcost # open gap in a
+			openY = match[i, j-1] + startcost # open gap in a in matrix X
 
 			if openY > extendY: 
 
-				Y[i,j] = openY
+				Y[i,j] = openY #same idea as above
 
 				traceY[i][j] = "openY"
 
@@ -115,38 +118,41 @@ def sw(a, b, substitutionmatrix, startcost, extendcost):
 				traceY[i][j] = "extendY"
 
 			match[i,j] = match[i-1, j-1] + substitutionmatrix[frozenset((a[i-1], b[j-1]))]
+			#sub.mat. contains an immutable set initialized with the given iterables
+			#the score for the comparison of amino acid in seq a or seq b depends on those sub. mat. scores and
+			#on the fact if they are indeed a match or not.
 
-			traceMatch[i][j] = "match"
+			traceMatch[i][j] = "match" #a match for tracing matrix
 
 			if Y[i,j] > match[i,j]:
 
 				match[i,j] = Y[i,j]
 
-				traceMatch[i][j] = "closeY"
+				traceMatch[i][j] = "closeY" #there are no more common subseq
 
 			if X[i,j] > match[i,j]:
 
 				match[i,j] = X[i,j]
 
-				traceMatch[i][j] = "closeX"
+				traceMatch[i][j] = "closeX" #there are no more common subseq
 
 			if match[i,j] > maxSeen[0]:
 
-				maxSeen = (match[i,j], (i, j))
+				maxSeen = (match[i,j], (i, j)) #record the highest matching scores!
 
-	# traceback
+	#Start the traceback based on the best score between seq comparisons and return that subsequence
 
-	i,j = maxSeen[1]
+	i,j = maxSeen[1] #start at the highest score
 
-	end = (i,j)
+	end = (i,j) 
 
 	matrix, traceMatrix = match, traceMatch
 
-	score = matrix[i,j]
+	score = matrix[i,j] #this matrix told us the best scores available
 
-	bestScore = score
+	bestScore = score #we only care about the best score
 
-	matchedA = ""
+	matchedA = "" #the string of matched seq a 
 
 	matchedB = ""
 
@@ -154,7 +160,7 @@ def sw(a, b, substitutionmatrix, startcost, extendcost):
 
 		if traceMatrix[i][j] == "match":
 
-			matchedA = a[i-1] + matchedA
+			matchedA = a[i-1] + matchedA #start building the string based on matches
 
 			matchedB = b[j-1] + matchedB
 
@@ -162,7 +168,7 @@ def sw(a, b, substitutionmatrix, startcost, extendcost):
 
 		elif traceMatrix[i][j] == "closeX":
 
-			matrix, traceMatrix = X, traceX
+			matrix, traceMatrix = X, traceX #the end of a subseq recorded in matrix X
 
 		elif traceMatrix[i][j] == "closeY":
 
@@ -170,9 +176,9 @@ def sw(a, b, substitutionmatrix, startcost, extendcost):
 
 		elif traceMatrix[i][j] == "openY":
 
-			matchedA = "-" + matchedA
+			matchedA = "-" + matchedA #introduction of a gap
 
-			matchedB = b[j-1] + matchedB
+			matchedB = b[j-1] + matchedB #we did not have a match
 
 			i,j = i, j-1
 
@@ -180,17 +186,17 @@ def sw(a, b, substitutionmatrix, startcost, extendcost):
 
 		elif traceMatrix[i][j] == "extendY":
 
-			matchedA = "-" + matchedA
+			matchedA = "-" + matchedA #introduction of the extension gaps
 
-			matchedB = b[j-1] + matchedB
+			matchedB = b[j-1] + matchedB #we still have no match
 
 			i,j = i, j-1
 
 		elif traceMatrix[i][j] == "openX":
 
-			matchedA = a[i-1] + matchedA
+			matchedA = a[i-1] + matchedA #we had no match
 
-			matchedB = "-" + matchedB
+			matchedB = "-" + matchedB #introduction of start gap
 
 			i,j = i-1, j
 
@@ -198,15 +204,15 @@ def sw(a, b, substitutionmatrix, startcost, extendcost):
 
 		elif traceMatrix[i][j] == "extendX":
 
-			matchedA = a[i-1] + matchedA
+			matchedA = a[i-1] + matchedA #we still have no match
 
-			matchedB = "-" + matchedB
+			matchedB = "-" + matchedB #introduction of extension gaps
 
 			i,j = i-1, j
 
-		else: print("we should never get here.")
+		else: print("hmm something is wrong here")
 
-		score = matrix[i,j]
+		score = matrix[i,j] #ze final score!
 
 	start = (i, j)
 
