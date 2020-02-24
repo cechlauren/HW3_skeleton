@@ -4,7 +4,7 @@ from hw3align.smithwaterman import sw
 
 #As a first test, lets make sure that the trace and alignment work okay regardless of starting 
 #with a gap: 
-def sw_Gap_beginB_test():
+def test_sw_Gap_beginB():
 	assert sw("EFGACD", "ACD", blosum50, -3, -1)[3:] == ("ACD", "ACD") 
 	#recall that sw() takes two strings to align, a scoring matrix, and gap start/extend penalties
 def sw_Gap_beginA_test():
