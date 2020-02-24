@@ -9,15 +9,17 @@ TP_Alignments, TN_Alignments = getAlignments(scorematrix=blosum50, gap_start=-10
 
 def test_get_alignments():
 	assert TP_Alignments[7] == ("NSNQIKILGNQGSFLTKG-PSKLNDRADSRRSLW--------DQGNFPLIIK------NLKI", "NCSTFYVVKEDGTIVYTGTATSMFD-NDTKETVYIADFSSVNEEGTYYLAVPGVGKSVNFKI")
-   
+#making sure the alignment example in my sw testing looks as expected.   
 
+#######################################################################################################
+#Now the scoring from sw will be redone
 
-#will redo scoring from sw
-#def test_scoring():
-	#return None
-    #testA, testB = TP_Alignments[5]
-    #assert scoreAlignment(testA, testB, blosum50, -10, -1) ==35
-    
+def test_scoring():
+	
+    testA, testB = TP_Alignments[7]
+    assert scoreAlignment(testA, testB, blosum50, -10, -1) == 35.0
+#making sure that the scoring example in my sw testing looks as expected
+#######################################################################################################    
 #no test of obj fxn code since lots of OH.
 
 #make sure matrix changes but wont make more copies than necessary
