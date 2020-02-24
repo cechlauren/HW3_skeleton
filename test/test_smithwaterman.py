@@ -1,7 +1,7 @@
 from hw3align.sequences import *
 from hw3align.getmatrix import blosum50
 from hw3align.smithwaterman import sw
-###############################################################################################
+
 #As a first test, lets make sure that the trace and alignment work okay regardless of starting 
 #with a gap: 
 def sw_Gap_beginB_test():
