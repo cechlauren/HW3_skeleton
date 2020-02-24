@@ -3,6 +3,7 @@ import random
 import numpy as np
 from .sequences import *
 from .smithwaterman import sw
+from .getseq import positives
 
 def getAlignments(scorematrix, gap_start, gap_extend):
 	'''
