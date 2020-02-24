@@ -14,9 +14,9 @@ def test_sw_Gap_beginA():
 #As a second test, lets make sure that the trace and alignment work okay regardless of ending
 #with a gap: 
 def test_sw_Gap_endA():
-	#assert sw("ACD", "ACDEFG", blosum50, -3, -1)[3:] == ("ACD", "ACD")
+	assert sw("ACD", "ACDEFG", blosum50, -3, -1)[3:] == ("ACD", "ACD")
 def test_sw_Gap_endB():
-	#assert sw("ACDEFG", "ACD", blosum50, -3, -1)[3:] == ("ACD", "ACD")
+	assert sw("ACDEFG", "ACD", blosum50, -3, -1)[3:] == ("ACD", "ACD")
 #############################################################################################
 #As a third test, lets make sure sw() can trace thru matches & mismatches:
 def test_sw_trace_mismatch():
