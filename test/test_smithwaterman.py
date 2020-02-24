@@ -22,10 +22,10 @@ def test_sw_Gap_endB():
 def test_sw_trace_mismatch():
 	assert sw("ACDAFG", "ACDEFG", blosum50, -3, -1)[2:] == (41.0, 'ACDAFG', 'ACDEFG') #make sure the score is right
 #############################################################################################	
-#As a final test, make sure sw() can trace through gaps and extensions in both strings:
+#As a fourth test, make sure sw() can trace through gaps and extensions in both strings:
 def test_sw_trace_indelB():
-	assert sw("LAREN", "LARN", blosum50, -3, -1)[3:] == ('LAREN', 'LAR-N')
+	assert sw("LAREN", "LARN", blosum50, -3, -1)[3:] == ('LAREN', 'LAR-N') #sadly i'm missing U
 def test_sw_trace_indelA():
 	assert sw("LARN", "LAREN", blosum50, -3, -1)[3:] == ('LAR-N', 'LAREN')
-
-
+#############################################################################################
+#The final test--let's try it on the real pairs!
