@@ -10,12 +10,12 @@ import sklearn.metrics as skm
 
 #ROC plots 
 
-def makeRocPlot(scorematrix, gap_start, gap_extend, name):
+def makeRocPlotLC(scorematrix, gap_start, gap_extend, name):
 	'''
     
 	This function input is a scoring matrix and gap start/extend params.
-    This function will find the ROC using known TP and TN data
-    This function output is a PDF plot. 
+    This function will find the ROC using known TP and TN data.
+     
     
 	'''
 	#Score the true positives and true negatives...we've seen this before
@@ -28,10 +28,10 @@ def makeRocPlot(scorematrix, gap_start, gap_extend, name):
 	fpr, tpr, threshold = skm.roc_curve(allClasses, allScores) #now put them into sklearn program
 	roc_auc = skm.auc(fpr, tpr) #the roc function takes tpr and false positive rate
     
-	#plot. Adapted from https://stackoverflow.com/questions/25009284/how-to-plot-roc-curve-in-python
+	#plot. Adapted from https://stackoverflow.com/questions/56203889/how-to-get-the-optimal-threshold-from-roc-curve-in-python
 	fig, axes = plt.figure(), plt.axes()
-	plt.title('Receiver Operating Characteristic for %s\nwith gap start %s and extend %s' % \
-	 (name, gap_start, gap_extend))
+	plt.title('Receiver Operating Characteristic for' + name + 'with gap start %s and extend %s' % \
+	 (gap_start, gap_extend))
 	plt.plot(fpr, tpr, 'b', label = 'AUC = %0.2f' % roc_auc)
 	plt.legend(loc = 'lower right')
 	plt.plot([0, 1], [0, 1],'r--')
@@ -40,13 +40,13 @@ def makeRocPlot(scorematrix, gap_start, gap_extend, name):
 	axes.set_aspect('equal', 'box')
 	plt.ylabel('True Positive Rate')
 	plt.xlabel('False Positive Rate')
-	#plt.show()
-	fig.savefig("ROC_%s.pdf" % name)
+	plt.show()
+	
 
     
 #May be prudent to consider how sequence length influences the scores and therefore the tpr and fpr.
 #Try to normalize for the string length in some way??
-def makeRocPlot_normScores(scorematrix, gap_start, gap_extend, name):
+def makeRocPlot_normScoresLC(scorematrix, gap_start, gap_extend, name):
 	'''
     
 	This function input is a scoring matrix and gap start/extend params.
@@ -65,10 +65,10 @@ def makeRocPlot_normScores(scorematrix, gap_start, gap_extend, name):
 	roc_auc = skm.auc(fpr, tpr) #get roc output
     
 	#plot it
-    #Adapted from https://stackoverflow.com/questions/25009284/how-to-plot-roc-curve-in-python
+    #Adapted from https://stackoverflow.com/questions/56203889/how-to-get-the-optimal-threshold-from-roc-curve-in-python
 	fig, axes = plt.figure(), plt.axes()
-	plt.title('Receiver Operating Characteristic for %s\nwith gap start %s and extend %s\nwith normalized scores' % \
-	 (name, gap_start, gap_extend))
+	plt.title('Receiver Operating Characteristic for' + name+ 'with gap start %s and extend %s\nwith normalized scores' % \
+	 (gap_start, gap_extend))
 	plt.plot(fpr, tpr, 'b', label = 'AUC = %0.2f' % roc_auc)
 	plt.legend(loc = 'lower right')
 	plt.plot([0, 1], [0, 1],'r--')
@@ -77,8 +77,8 @@ def makeRocPlot_normScores(scorematrix, gap_start, gap_extend, name):
 	axes.set_aspect('equal', 'box')
 	plt.ylabel('True Positive Rate')
 	plt.xlabel('False Positive Rate')
-	#plt.show()
-	fig.savefig("ROC_normScores_%s.pdf" % name)
+	plt.show()
+	
     
 
 #in the instance that we provide a given set of scores for the true positives and true negatives 
@@ -97,7 +97,7 @@ def makeRocPlot_givenScores(posScores, negScores, gap_start, gap_extend, name):
 	roc_auc = skm.auc(fpr, tpr)
     
 	#plot it
-    #Adapted from https://stackoverflow.com/questions/25009284/how-to-plot-roc-curve-in-python
+    #Adapted from https://stackoverflow.com/questions/56203889/how-to-get-the-optimal-threshold-from-roc-curve-in-python
 	fig, axes = plt.figure(), plt.axes()
 	plt.title('Receiver Operating Characteristic for %s\nwith gap start %s and extend %s' % \
 	 (name, gap_start, gap_extend))
