@@ -12,7 +12,7 @@ def read_substitution_matrix(filename):
 	readHeader = False 
 	header = [] #an array
 	rowi = 0 #start at zero
-	for line in open("BMI203_HW3_alignment/" + filename, "r"):
+	for line in open("hw3align/" + filename, "r"):
 		#We dont care about comments
 		if line[0] == "#":
 			continue
