@@ -5,8 +5,8 @@ from hw3align.getmatrix import blosum50
 
 #tpAlignments, tnAlignments = getAlignments(scoringMatrix=blosum50, gapStart=-10, gapExtend= -1)
 
-#def test_get_alignments():
-	#return None
+def test_get_alignments():
+	return None
     #assert tpAlignments[5] == ("RAECIQR-GVSPSQAQGLGSNLVTE", "RKRKIDRDAVLNMWQQGLGASHISK")
    
 
