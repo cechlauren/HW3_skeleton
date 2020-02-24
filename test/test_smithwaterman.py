@@ -29,3 +29,13 @@ def test_sw_trace_indelA():
 	assert sw("LARN", "LAREN", blosum50, -3, -1)[3:] == ('LAR-N', 'LAREN')
 #############################################################################################
 #The final test--let's try it on the real pairs!
+testa, testb = positives[7]
+#looks like this: ('RFKWGPASQQILFQAYERQKNPSKEERETLVEECNRAECIQRGVSPSQAQGLGSNLVTEVRVYNWFANRRKEEAFRH', 'GRKRKIDRDAVLNMWQQGLGASHISKTMNIARSTVYKVINESN')
+def test_sw_positives_data():
+	start, end, bestScore, matchedA, matchedB = sw(testa, testb, blosum50, -10, -1)
+	assert start == (29, 39)
+	assert end == (76, 100)
+	assert bestScore == 35.0
+	assert matchedA == "NSNQIKILGNQGSFLTKG-PSKLNDRADSRRSLW--------DQGNFPLIIK------NLKI"
+	assert matchedB == "NCSTFYVVKEDGTIVYTGTATSMFD-NDTKETVYIADFSSVNEEGTYYLAVPGVGKSVNFKI"
+#you can see these outputs on the jupyter notebook or write up too
