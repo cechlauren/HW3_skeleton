@@ -2,6 +2,19 @@ from hw3align.sequences import *
 from hw3align.getmatrix import blosum50
 from hw3align.smithwaterman import sw
 
+#As a first test, lets make sure that the trace and alignment work okay regardless of starting 
+#or ending with a gap: 
+def sw_Gap_beginB_test():
+	assert sw("ACDEFG", "EFG", blosum50, -3, -1)[3:] == ("EFG", "EFG") 
+	#recall that sw() takes two strings to align, a scoring matrix, and gap start/extend penalties
+def sw_Gap_beginA_test():
+	assert smithWaterman("EFG", "ACDEFG", blosum50, -3, -1)[3:] == ("EFG", "EFG")
+	#this is like above but now seq a has the gap
+#def test_SW_endAGap():
+	#assert smithWaterman("ACD", "ACDEFG", blosum50, -3, -1)[3:] == ("ACD", "ACD")
+#def test_SW_endBGap():
+	#assert smithWaterman("ACDEFG", "ACD", blosum50, -3, -1)[3:] == ("ACD", "ACD")
+
 # I want to make sure I can trace through matches and mismatches:
 def test_SW_trace_through_mismatch():
 	return None 
@@ -11,15 +24,7 @@ def test_SW_trace_through_mismatch():
 	#assert smithWaterman("GARRETT", "GAETT", blosum50, -3, -1)[3:] == ('GARRETT', 'GA--ETT')
 #def test_SW_trace_through_indel_A():
 	#assert smithWaterman("GAETT", "GARRETT", blosum50, -3, -1)[3:] == ('GA--ETT', 'GARRETT')
-# I want to make sure my trace and alignment works okay if I start/end with a gap: 
-#def test_SW_beginBGap():
-	#assert smithWaterman("ACDEFG", "EFG", blosum50, -3, -1)[3:] == ("EFG", "EFG")
-#def test_SW_beginAGap():
-	#assert smithWaterman("EFG", "ACDEFG", blosum50, -3, -1)[3:] == ("EFG", "EFG")
-#def test_SW_endAGap():
-	#assert smithWaterman("ACD", "ACDEFG", blosum50, -3, -1)[3:] == ("ACD", "ACD")
-#def test_SW_endBGap():
-	#assert smithWaterman("ACDEFG", "ACD", blosum50, -3, -1)[3:] == ("ACD", "ACD")
+
 # I pulled a random pair and ran it through EMBOSS
 # to get the optimal alignment to check.
 # If it sticks around a while, the results should be at
