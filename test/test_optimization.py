@@ -207,7 +207,7 @@ def test_geneticAlg():
 	
 	pop, scores, library, objectiveMeans = optimizeMatrix_geneticAlg(
 		blosum50, 1, 1, 1, 10, 5, 5, 3, -10, -1, true_pos_align, true_neg_align)
-	return None
+	
 	assert len(pop) == 10
 	assert len(scores) == 10
 	assert len(library) == 3
