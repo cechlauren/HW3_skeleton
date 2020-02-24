@@ -25,11 +25,11 @@ def test_scoring():
 #Utilize running output to verify that actual function is running correctly.
 #Confirm data stays the right length:
 
-def test_geneticAlg():
+#def test_geneticAlg():
 	#return None
-	pop, scores, library, objectiveMeans = optimizeMatrix_geneticAlg(
-		blosum50, 1, 1, 1, 10, 5, 5, 3, -10, -1, true_pos_align, true_neg_align)
-	assert len(pop) == 10
+	#pop, scores, library, objectiveMeans = optimizeMatrix_geneticAlg(
+		#blosum50, 1, 1, 1, 10, 5, 5, 3, -10, -1, true_pos_align, true_neg_align)
+	#assert len(pop) == 10
 	#assert len(scores) == 10
 	#assert len(library) == 3
 	#assert len(objectiveMeans) == 5 + 1 # there's an extra -inf at the beginning so that it starts off increasing
