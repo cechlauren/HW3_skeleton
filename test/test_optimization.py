@@ -2,19 +2,20 @@ import sys
 from hw3align.sequences import *
 from hw3align.optimalmatrix import *
 from hw3align.getmatrix import blosum50
+#######################################################################################################
+#To test the optimization of these matrices, need to get true positive and true negative alignments
 
-#tpAlignments, tnAlignments = getAlignments(scoringMatrix=blosum50, gapStart=-10, gapExtend= -1)
+TP_Alignments, TN_Alignments = getAlignments(scorematrix=blosum50, gap_start=-10, gap_extend= -1)
 
 def test_get_alignments():
-	return None
-    #assert tpAlignments[5] == ("RAECIQR-GVSPSQAQGLGSNLVTE", "RKRKIDRDAVLNMWQQGLGASHISK")
+	assert TP_Alignments[7] == ("NSNQIKILGNQGSFLTKG-PSKLNDRADSRRSLW--------DQGNFPLIIK------NLKI", "NCSTFYVVKEDGTIVYTGTATSMFD-NDTKETVYIADFSSVNEEGTYYLAVPGVGKSVNFKI")
    
 
 
 #will redo scoring from sw
 #def test_scoring():
 	#return None
-    #testA, testB = tpAlignments[5]
+    #testA, testB = TP_Alignments[5]
     #assert scoreAlignment(testA, testB, blosum50, -10, -1) ==35
     
 #no test of obj fxn code since lots of OH.
@@ -52,7 +53,7 @@ def test_get_alignments():
 #def test_geneticAlg_skeleton():
 	#return None
 	#pop, scores, library, objectiveMeans = optimizeMatrix_geneticAlg(
-		#blosum50, 1, 1, 1, 10, 5, 5, 3, -10, -1, tpAlignments, tnAlignments)
+		#blosum50, 1, 1, 1, 10, 5, 5, 3, -10, -1, TP_Alignments, TN_Alignments)
 	#assert len(pop) == 10
 	#assert len(scores) == 10
 	#assert len(library) == 3
