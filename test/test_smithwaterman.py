@@ -3,7 +3,8 @@ from hw3align.getmatrix import blosum50
 from hw3align.smithwaterman import sw
 
 # I want to make sure I can trace through matches and mismatches:
-#def test_SW_trace_through_mismatch():
+def test_SW_trace_through_mismatch():
+	return None 
 	#assert smithWaterman("ACDAFG", "ACDEFG", blosum50, -3, -1)[2:] == (41.0, 'ACDAFG', 'ACDEFG')
 # I want to make sure I can trace through gaps and extensions in both strings:
 #def test_SW_trace_through_indel_B():
