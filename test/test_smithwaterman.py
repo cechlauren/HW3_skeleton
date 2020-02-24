@@ -1,19 +1,22 @@
 from hw3align.sequences import *
 from hw3align.getmatrix import blosum50
 from hw3align.smithwaterman import sw
-
+###############################################################################################
 #As a first test, lets make sure that the trace and alignment work okay regardless of starting 
-#or ending with a gap: 
+#with a gap: 
 def sw_Gap_beginB_test():
-	assert sw("ACDEFG", "EFG", blosum50, -3, -1)[3:] == ("EFG", "EFG") 
+	assert sw("EFGACD", "ACD", blosum50, -3, -1)[3:] == ("ACD", "ACD") 
 	#recall that sw() takes two strings to align, a scoring matrix, and gap start/extend penalties
 def sw_Gap_beginA_test():
-	assert smithWaterman("EFG", "ACDEFG", blosum50, -3, -1)[3:] == ("EFG", "EFG")
+	assert smithWaterman("ACD", "EFGACD", blosum50, -3, -1)[3:] == ("ACD", "ACD")
 	#this is like above but now seq a has the gap
-#def test_SW_endAGap():
-	#assert smithWaterman("ACD", "ACDEFG", blosum50, -3, -1)[3:] == ("ACD", "ACD")
-#def test_SW_endBGap():
-	#assert smithWaterman("ACDEFG", "ACD", blosum50, -3, -1)[3:] == ("ACD", "ACD")
+#############################################################################################
+#As a second test, lets make sure that the trace and alignment work okay regardless of ending
+#with a gap: 
+def sw_Gap_endA_test():
+	assert smithWaterman("ACD", "ACDEFG", blosum50, -3, -1)[3:] == ("ACD", "ACD")
+def sw_Gap_endB_test():
+	assert smithWaterman("ACDEFG", "ACD", blosum50, -3, -1)[3:] == ("ACD", "ACD")
 
 # I want to make sure I can trace through matches and mismatches:
 def test_SW_trace_through_mismatch():
