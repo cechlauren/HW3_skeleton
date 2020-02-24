@@ -13,19 +13,19 @@ def sw_Gap_beginA_test():
 #############################################################################################
 #As a second test, lets make sure that the trace and alignment work okay regardless of ending
 #with a gap: 
-def sw_Gap_endA_test():
-	assert sw("ACD", "ACDEFG", blosum50, -3, -1)[3:] == ("ACD", "ACD")
-def sw_Gap_endB_test():
-	assert sw("ACDEFG", "ACD", blosum50, -3, -1)[3:] == ("ACD", "ACD")
+#def sw_Gap_endA_test():
+	#assert sw("ACD", "ACDEFG", blosum50, -3, -1)[3:] == ("ACD", "ACD")
+#def sw_Gap_endB_test():
+	#assert sw("ACDEFG", "ACD", blosum50, -3, -1)[3:] == ("ACD", "ACD")
 #############################################################################################
 #As a third test, lets make sure sw() can trace thru matches & mismatches:
-def sw_trace_mismatch_test():
-	assert sw("ACDAFG", "ACDEFG", blosum50, -3, -1)[2:] == (41.0, 'ACDAFG', 'ACDEFG') #make sure the score is right
+#def sw_trace_mismatch_test():
+	#assert sw("ACDAFG", "ACDEFG", blosum50, -3, -1)[2:] == (41.0, 'ACDAFG', 'ACDEFG') #make sure the score is right
 #############################################################################################	
 #As a final test, make sure sw() can trace through gaps and extensions in both strings:
-def sw_trace_indelB_test():
-	assert sw("LAREN", "LARN", blosum50, -3, -1)[3:] == ('LAREN', 'LAR-N')
-def sw_trace_indelA_test():
-	assert sw("LARN", "LAREN", blosum50, -3, -1)[3:] == ('LAR-N', 'LAREN')
+#def sw_trace_indelB_test():
+	#assert sw("LAREN", "LARN", blosum50, -3, -1)[3:] == ('LAREN', 'LAR-N')
+#def sw_trace_indelA_test():
+	#assert sw("LARN", "LAREN", blosum50, -3, -1)[3:] == ('LAR-N', 'LAREN')
 
 
