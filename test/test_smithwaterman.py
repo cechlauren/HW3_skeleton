@@ -24,8 +24,8 @@ def sw_trace_mismatch_test():
 #############################################################################################	
 #As a final test, make sure sw() can trace through gaps and extensions in both strings:
 def sw_trace_indelB_test():
-	assert sw("LARENCECH", "LARNCECH", blosum50, -3, -1)[3:] == ('LARENCECH', 'LAR-NCECH')
+	assert sw("LAREN", "LARN", blosum50, -3, -1)[3:] == ('LAREN', 'LAR-N')
 def sw_trace_indelA_test():
-	assert sw("LARNCECH", "LARENCECH", blosum50, -3, -1)[3:] == ('LAR-NCECH', 'LARENCECH')
+	assert sw("LARN", "LAREN", blosum50, -3, -1)[3:] == ('LAR-N', 'LAREN')
 
 
