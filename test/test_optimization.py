@@ -1,8 +1,7 @@
 import sys
 from hw3align.sequences import *
 from hw3align.optimalmatrix import * 
-from hw3align.optimalmatrix import true_pos_align
-from hw3align.optimalmatrix import true_neg_align
+
 from hw3align.getmatrix import blosum50
 #######################################################################################################
 #To test the optimization of these matrices, need to get true positive and true negative alignments
