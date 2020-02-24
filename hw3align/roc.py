@@ -30,7 +30,7 @@ def makeRocPlotLC(scorematrix, gap_start, gap_extend, name):
     
 	#plot. Adapted from https://stackoverflow.com/questions/56203889/how-to-get-the-optimal-threshold-from-roc-curve-in-python
 	fig, axes = plt.figure(), plt.axes()
-	plt.title('Receiver Operating Characteristic for' + name + 'with gap start %s and extend %s' % \
+	plt.title('Receiver Operating Curve for' + name + 'with gap start %s and extend %s' % \
 	 (gap_start, gap_extend))
 	plt.plot(fpr, tpr, 'b', label = 'AUC = %0.2f' % roc_auc)
 	plt.legend(loc = 'lower right')
@@ -67,7 +67,7 @@ def makeRocPlot_normScoresLC(scorematrix, gap_start, gap_extend, name):
 	#plot it
     #Adapted from https://stackoverflow.com/questions/56203889/how-to-get-the-optimal-threshold-from-roc-curve-in-python
 	fig, axes = plt.figure(), plt.axes()
-	plt.title('Receiver Operating Characteristic for' + name+ 'with gap start %s and extend %s\nwith normalized scores' % \
+	plt.title('Receiver Operating Curve for' + name+ 'with gap start %s and extend %s\nwith normalized scores' % \
 	 (gap_start, gap_extend))
 	plt.plot(fpr, tpr, 'b', label = 'AUC = %0.2f' % roc_auc)
 	plt.legend(loc = 'lower right')
@@ -99,7 +99,7 @@ def makeRocPlot_givenScores(posScores, negScores, gap_start, gap_extend, name):
 	#plot it
     #Adapted from https://stackoverflow.com/questions/56203889/how-to-get-the-optimal-threshold-from-roc-curve-in-python
 	fig, axes = plt.figure(), plt.axes()
-	plt.title('Receiver Operating Characteristic for %s\nwith gap start %s and extend %s' % \
+	plt.title('Receiver Operating Curve for %s\nwith gap start %s and extend %s' % \
 	 (name, gap_start, gap_extend))
 	plt.plot(fpr, tpr, 'b', label = 'AUC = %0.2f' % roc_auc)
 	plt.legend(loc = 'lower right')
