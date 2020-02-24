@@ -1,5 +1,5 @@
 from hw3align.sequences import *
-from hw3align.matrices import blosum50
+from hw3align.getmatrix import blosum50
 from hw3align.smithwaterman import sw
 
 # I want to make sure I can trace through matches and mismatches:
