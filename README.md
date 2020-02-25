@@ -54,7 +54,15 @@ We determine all true positive alignment scores to find the cutoff that sets tru
 The FPR will then be the count of neg. scores above the cutoff we designated, divided by the number of true negatives. This is all described in [optimalgaps.py](https://github.com/cechlauren/HW3_skeleton/blob/master/hw3align/optimalgaps.py).
 
 So, using those cutoffs, we get the following false positive rate distribution:
-<img src="optimizeGapPenalitiesPlot.pdf" /><br />
+see: [optimizeGapPenalitiesPlot.pdf](https://github.com/cechlauren/HW3_skeleton/blob/master/optimizeGapPenalitiesPlot.pdf)
+
+I found several combinations that result in a 20% FPR, but decided to go with the less extreme case of:
+Gap opening: -8
+Gap extension: -3
+
+The following analyses will use those affine penalties.
+
+
 
 
 
