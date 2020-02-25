@@ -74,15 +74,16 @@ of 0.7)?
 To identify the best scoring matrix based on the best affine penalities I identified in question 1 I calculated and plotted the respective scores using [roc.py](https://github.com/cechlauren/HW3_skeleton/blob/master/hw3align/roc.py). 
 All plots can be viewed in this directory: [ROCplots](https://github.com/cechlauren/HW3_skeleton/tree/master/ROCplots).
 The following are the unnormalized ROC for each scoring matrix:
-<img src="blosum50_8_3.png" /><br />
 
-<img src="blosum62_8_3.png" /><br />
+<img src="ROCplots/blosum50_8_3.png" /><br />
 
-<img src="pam100_8_3.png" /><br />
+<img src="ROCplots/blosum62_8_3.png" /><br />
 
-<img src="pam50_8_3.png" /><br />
+<img src="ROCplots/pam100_8_3.png" /><br />
 
-<img src="matio_8_3.png" /><br />
+<img src="ROCplots/pam50_8_3.png" /><br />
+
+<img src="ROCplots/matio_8_3.png" /><br />
 
 
 
