@@ -139,10 +139,23 @@ The function works by optimizing an alignment score matrix with a genetic algori
 The best matrix for BLOSUM50 is here: [optimalblosum.txt](https://github.com/cechlauren/HW3_skeleton/blob/master/hw3align/optimalblosum.txt)
 The best matrix for MATIO is here: [optimalmatio.txt](https://github.com/cechlauren/HW3_skeleton/blob/master/hw3align/optimalmatio.txt)
 
+When I look at the scores and objective means for these optimized matrices, I see on average:
+-BLOSUM50 score improves up to +0.4 from starting around 2.04-2.18
+-BLOSUM50 objective means highest hover around 2.3
+-MATIO score improves up to +0.2 from starting around 1.96-2.0
+-MATIO objective means highest hover around 2.05
+See: [objectivemeans.png](https://github.com/cechlauren/HW3_skeleton/blob/master/objectivemeans.png).
+I would have expected to see better improvement, maybe I did something wrong.
+
+When the sequences have been realigned and rescored, the ROC curves look somewhat similar to the original matrix. 
+Optimized BLOSUM50:
+<img src="ROCplots/optBlosplot.png" /><br />
+
+Optimized MATIO:
+<img src="ROCplots/optmatio.png" /><br />
 
 
-
-
+It would appear that the only major changes were in the AUCs, and indicates that SW function was likely overfitting some alignment features.
 
 
 
