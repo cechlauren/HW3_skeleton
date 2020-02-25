@@ -3,7 +3,7 @@ import sys
 import numpy as np
 
 
-
+#some inspiration from : https://tiefenauer.github.io/blog/smith-waterman/
 
 def sw(a, b, substitutionmatrix, startcost, extendcost):
 
