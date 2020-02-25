@@ -5,7 +5,7 @@ Status](https://travis-ci.org/cechlauren/HW3_skeleton.svg?branch=master)](https:
 
 Smith-Waterman-derived alignment project with testing.
 
-## usage
+## USAGE
 
 To use the package, first make a new conda environment and activate it
 
@@ -27,7 +27,7 @@ main function (located in `HW3_skeleton/hw3align/__main__.py`) can be run as fol
 python -m smith_waterman
 ```
 
-## testing
+## TESTING
 
 Testing is as simple as running
 
@@ -95,6 +95,45 @@ So, in summary, the false positive rates for each matrix at a 70% true positive 
 The BLOSUM50 and PAM250 matrices have the same AUC, but the false positive rate for BLOSUM50 is superior at the TPR designated in this assignment. Unexpectedly, the MATIO did not perform worst overall...but does have the lowest initial TPR.
 
 ### Question 3
+
+-How does the performance change if you normalize the Smith-Waterman scores by
+the length of the shortest sequence in a pair (i.e. divide the raw score by the min
+length)? Show the ROC curves for your best matrix and for the same matrix with
+normalized scores. 
+-Are the false positive rates better or worse? 
+-Why do you think this is so?
+
+To be frank, these normalized ROCs look terrible. 
+Here is the best matrix non-normalized:
+<img src="ROCplots/blosum50_8_3.png" /><br />
+
+And here it is normalized (see code: [roc.py](https://github.com/cechlauren/HW3_skeleton/blob/master/hw3align/roc.py) ) by the shortest sequence length of a pair:
+
+<img src="ROCplots/blosum50_normalized.png" /><br />
+
+Reporting the FPR at 70% TP level:
+- **BLOSUM50: 20%**
+- BLOSUM62: 40%
+- PAM100: 30%
+- PAM250: 25%
+- MATIO: 35%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
