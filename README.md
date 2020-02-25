@@ -137,7 +137,8 @@ To see how the objective function was maximized: [optimalmatrix.py](https://gith
 The function works by optimizing an alignment score matrix with a genetic algorithm. The function will stop if it hits a certain number of iterations (a parameter we can put in), or if it doesn't see a new objective function value in the top of the library where we track the best scoring matrices to repopulate with in a certain number of steps without improvement. The function returns a final population of matrices, the scores for matrices at the last step taken, the library of best matrices, and a list of the mean objective function value at each step taken. 
 
 The best matrix for BLOSUM50 is here: [optimalblosum.txt](https://github.com/cechlauren/HW3_skeleton/blob/master/hw3align/optimalblosum.txt)
-The best matrix for MATIO is here: 
+The best matrix for MATIO is here: [optimalmatio.txt](https://github.com/cechlauren/HW3_skeleton/blob/master/hw3align/optimalmatio.txt)
+
 
 
 
