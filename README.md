@@ -61,6 +61,7 @@ python -m pytest
 
 from the root directory of this project.
 
+
 ## Questions Part 1
 
 ### Question 1
@@ -206,16 +207,8 @@ databases?
 
 I think the best case for using an optimized matrix would be if the new one could consistently distinguish a new set of pos/neg examples that have varying lengths and distinct sequences to the training set examples. Basically, if we still had a test set, in addition to the training set we already used, and we found that this optimized matrix could still perform well I'd be convinced to pursue its use further. As I briefly mentioned above, it would also be useful to use another approach/program to test how it works.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+Ref and citations:
+https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-10-396
+https://bioinformaticshome.com/bioinformatics_tutorials/sequence_alignment/how_to_select_right_matrix.html
+http://darlinglab.org/tutorials/alignment.py
+https://www.geeksforgeeks.org/sequence-alignment-problem/
