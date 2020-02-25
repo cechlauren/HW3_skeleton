@@ -1,4 +1,4 @@
-# Smith-Waterman
+# Write Up Homework 3: Smith-Waterman
 
 [![Build
 Status](https://travis-ci.org/cechlauren/HW3_skeleton.svg?branch=master)](https://travis-ci.org/cechlauren/HW3_skeleton)
@@ -112,12 +112,24 @@ And here it is normalized (see code: [roc.py](https://github.com/cechlauren/HW3_
 <img src="ROCplots/blosum50_normalized.png" /><br />
 
 Reporting the FPR at 70% TP level:
-- **BLOSUM50: 20%**
-- BLOSUM62: 40%
-- PAM100: 30%
-- PAM250: 25%
-- MATIO: 35%
+- **BLOSUM50: 80%**
+- BLOSUM62: 90%
+- PAM100: 83%
+- **PAM250: 75%**
+- MATIO: 85%
 
+Although these FPR are distinctly worse, it is encouraging to see that BLOSUM50 still performs well relative to the others under normalized conditions.  PAM250 also performs well. Both have the same AUC. See directory [ROCplots](https://github.com/cechlauren/HW3_skeleton/tree/master/ROCplots) for normalized plots.
+
+These worsened scores displayed by the normalized plots indicate that normalization likely impairs the SW function's ability to distinguish between the pairs designated as positives and negatives. I'm guessing if you were to compare non-normalized to normalized scores distributions, the extent of distributions would be closer in normalized conditions.
+Given how normalizing to the smallest sequence affected the FPR, I might hypothesize that the SW function works better at finding a local match when the two sequences are longer (esp if the positive pairs set has longer sequences). Maybe we could try training with datasets that have similar distributions of sequence lengths to confirm this?
+
+## Questions Part 2
+
+## Question 1
+
+-Using the best gap penalties and matrix from part 1, create an alignment for each positive pair of sequences and each negative pair of sequences. You will use these static alignments as a starting point from which to optimize a scoring matrix to maximize separation of scores of the positive and negative pairs.
+
+-Devise an optimization algorithm to modify the values in a starting score matrix such as to maximize the following objective function: sum of TP rates for FP rates of 0.0, 0.1, 0.2, and 0.3. The maximum value for the objective function is 4.0 (where you are getting perfect separation of positive and negative pairs even at the lowest false positive rate).
 
 
 
