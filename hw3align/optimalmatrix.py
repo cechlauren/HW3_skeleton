@@ -5,6 +5,11 @@ from .sequences import *
 from .smithwaterman import sw
 from .getseq import *
 
+#some inspiration from : https://towardsdatascience.com/continuous-genetic-algorithm-from-scratch-with-python-ff29deedd099
+#and : https://github.com/handcraftsman/GeneticAlgorithmsWithPython/blob/master/ch01/genetic.py
+#and : https://github.com/yngvem/Smith_Waterman/blob/master/smith_waterman.py
+#and : https://github.com/scastlara/minineedle/blob/master/minineedle/needle.py
+
 def getAlignments(scorematrix, gap_start, gap_extend):
 	'''
 	This function will retrieve the true positive and true negative alignments using the scoring matrix, gap_start,
