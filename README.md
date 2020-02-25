@@ -125,7 +125,7 @@ Given how normalizing to the smallest sequence affected the FPR, I might hypothe
 
 ## Questions Part 2
 
-## Question 1
+## Question 1/2/3
 
 -Using the best gap penalties and matrix from part 1, create an alignment for each positive pair of sequences and each negative pair of sequences. You will use these static alignments as a starting point from which to optimize a scoring matrix to maximize separation of scores of the positive and negative pairs.
 
@@ -158,6 +158,29 @@ Optimized MATIO:
 It would appear that the only major changes were in the AUCs, and indicates that SW function was likely overfitting some alignment features.
 
 
+## Question 4
+-Describe your optimization algorithm briefly. How might you improve it?
+If needed again, see: [optimalmatrix.py](https://github.com/cechlauren/HW3_skeleton/blob/master/hw3align/optimalmatrix.py)
+This optimization uses an evolutionary algorithm approach called a "genetic algorithm". 
+In plain English, optimization often starts with some initial values for an experiment that may not be the best to use, so it would be prudent to change them until we get those best values. In terms of a genetic algorithm then, we might recall "survival of the fittest." The genetic algorithm must work on a **population** to be selected upon. The size of the population is the number of individuals, or **solutions**. An individual can be described by their chromosomes, or **features**, where the genes are binary values. Given this concept, we can consider that each solution likely has a fitness associated with it, and therefore we can apply a fitness function to find the best quality ones. Higher quality solutions have the best chance of surviving. You can initialize by representing each solution and selecting an appropriate number of individuals for it. The threshold will determine the individuals that will move on based on their fitness value...we see these as cutoffs in the scoring matrix part of the optimization alg.
+When used to find the optimal matrices for BLOSUM50 and MATIO, the inputs were:
+- a population of 100-1000 matrices
+- a mutation probability of 45%
+- iteration stop of 800 rounds
+- OR if no new matrices made in top 10, then stop at 100
+- selection pressure =2
+
+The matrices are scored based on the objective fxn (sum of TP rates for FP rates of 0.0, 0.1,
+0.2, and 0.3.). The scores resulting from that (I've mentioned above) will be normalized since they will be used in sampling with replacement, which allows the creation of a new generation of matrices that will hopefully have improved output. Of course, if we're always propagating with the best matrices and we could somehow find a way to prioritize those in our population, it would be a lot faster to find those optimal matrices. 
+When I look at some of the true positive alignments, I wonder how accurate these scores really are, or if these true positive alignments seem biologically possible. If I had more time, I'd make comparisons between my SW fxn results and that of a more widely used platform like BLAST.
+I'd also like to explore some ways to prevent my function from overfitting the datasets, as this seems to be a major issue.
+
+## Question 5
+-What would be required in order to make a convincing case that an optimized matrix
+will be of general utility and will actually be beneficial for people to use in searching
+databases?
+
+I think the best case for using an optimized matrix would be if the new one could consistently distinguish a new set of pos/neg examples that have varying lengths and distinct sequences to the training set examples. Basically, if we still had a test set, in addition to the training set we already used, and we found that this optimized matrix could still perform well I'd be convinced to pursue its use further. As I briefly mentioned above, it would also be useful to use another approach/program to test how it works.
 
 
 
