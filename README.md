@@ -54,7 +54,7 @@ python -m HW3_skeleton -A  #should find gap penalities
 python -m HW3_skeleton -B  #should compare scoring each scoring matrix
 python -m HW3_skeleton -C  #should normalize scoring matrices
 python -m HW3_skeleton -D  #should opt blosum 50
-python -m HW3_skeleton -E. #should opt matio
+python -m HW3_skeleton -E  #should opt matio
 ```
 
 ## TESTING
