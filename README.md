@@ -3,7 +3,7 @@
 [![Build
 Status](https://travis-ci.org/cechlauren/HW3_skeleton.svg?branch=master)](https://travis-ci.org/cechlauren/HW3_skeleton)
 
-Smith-Waterman-derived alignment project with testing.
+Smith-Waterman-derived alignment project with testing and writeup.
 
 ## USAGE
 
@@ -22,9 +22,14 @@ conda install --yes --file requirements.txt
 
 to install all the dependencies in `requirements.txt`. Then the package's
 main function (located in `HW3_skeleton/hw3align/__main__.py`) can be run as follows
+(They may not work so you can also scroll to see the writeup, or go check out testing folder)
 
 ```
-python -m smith_waterman
+python -m HW3_skeleton -A  #should find gap penalities
+python -m HW3_skeleton -B  #should compare scoring each scoring matrix
+python -m HW3_skeleton -C  #should normalize scoring matrices
+python -m HW3_skeleton -D  #should opt blosum 50
+python -m HW3_skeleton -E. #should opt matio
 ```
 
 ## TESTING
