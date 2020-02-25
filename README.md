@@ -5,6 +5,31 @@ Status](https://travis-ci.org/cechlauren/HW3_skeleton.svg?branch=master)](https:
 
 Smith-Waterman-derived alignment project with testing and writeup.
 
+## STRUCTURE
+```
+.
+├── README.md
+├── smith_waterman
+├── requirements.txt
+│   ...
+├── hw3align
+│   ├── getmatrix.py
+│   ├── __main__.py
+│   ├── optimalgaps.py
+│   ├── optimalmatrix.py
+│   ├── roc.py
+│   ├── smithwaterman.py
+│   ├── seqnamesprep.txt
+│   ├── getseq.py
+│   └── sequences
+├── test
+│    ├── test_optimization.py
+│    └── test_smithwaterman.py
+└── ROCplots
+    ├── blosum50_8_3.png
+    └── matio_8_3.png
+```
+
 ## USAGE
 
 To use the package, first make a new conda environment and activate it
