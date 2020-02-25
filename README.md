@@ -85,7 +85,16 @@ The following are the unnormalized ROC for each scoring matrix:
 
 <img src="ROCplots/matio_8_3.png" /><br />
 
+So, in summary, the false positive rates for each matrix at a 70% true positive rate are:
+- **BLOSUM50: 20%**
+- BLOSUM62: 40%
+- PAM100: 30%
+- PAM250: 25%
+- MATIO: 35%
 
+The BLOSUM50 and PAM250 matrices have the same AUC, but the false positive rate for BLOSUM50 is superior at the TPR designated in this assignment. Unexpectedly, the MATIO did not perform worst overall...but does have the lowest initial TPR.
+
+### Question 3
 
 
 
