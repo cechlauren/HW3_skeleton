@@ -36,3 +36,26 @@ python -m pytest
 ```
 
 from the root directory of this project.
+
+## Questions Part 1
+
+### Question 1
+Consider the false positive rate (proportion of negative pairs with scores that exceed
+a score threshold) when the true positive rate (proportion of positive pairs with scores
+above the threshold) is 0.7. What's the best false positive rate that you can achieve
+with varying both gap opening (from 1 to 20) and extension penalties (from 1 to 5) with
+the BLOSUM50 matrix? What is the best gap penalty combination?
+
+The best (read lowest) false positive rate I could achieve was 20% when varying gap opening/extension given a true positive rate of 70%.  This is shown in [optimalgaps.py](https://github.com/cechlauren/HW3_skeleton/blob/master/hw3align/optimalgaps.py).
+R was used to plot this data (a table of values fpr values for each combinatino of gap opening/extension), which can be found in [gapPenalties.txt](https://github.com/cechlauren/HW3_skeleton/blob/master/hw3align/gapPenalities.txt), to find the optimal combination of gap penalties. 
+Here is the R script: [OptimizeGapsRscript.txt](https://github.com/cechlauren/HW3_skeleton/blob/master/OptimizeGapsRscript.txt).
+
+We determine all true positive alignment scores to find the cutoff that sets true positive rate at 70%; they range from roughly 35-250.
+The FPR will then be the count of neg. scores above the cutoff we designated, divided by the number of true negatives. This is all described in [optimalgaps.py](https://github.com/cechlauren/HW3_skeleton/blob/master/hw3align/optimalgaps.py).
+
+So, using those cutoffs, we get the following false positive rate distribution:
+<img src="optimizeGapPenalitiesPlot.pdf" /><br />
+
+
+
+
