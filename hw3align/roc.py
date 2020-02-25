@@ -45,7 +45,7 @@ def makeRocPlotLC(scorematrix, gap_start, gap_extend, name):
 
     
 #May be prudent to consider how sequence length influences the scores and therefore the tpr and fpr.
-#Try to normalize for the string length in some way??
+#Try to normalize for the string length, based off of question 3 in part 1
 def makeRocPlot_normScoresLC(scorematrix, gap_start, gap_extend, name):
 	'''
     
