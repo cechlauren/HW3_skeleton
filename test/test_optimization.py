@@ -223,31 +223,7 @@ def test_geneticAlg():
 	#assert scoreMatrix(true_pos_align, true_neg_align, blosum50, -10, -1) == XXX
 
 #######################################################################################################	
-#Also important to check that the matrix changes but will not make excessive # of copies
-#def test_mutate_matrix():
-	#return None
-    #M = blosum.50.copy()
-    #M2 = mutateMatrix(M, 1, 1)
-    #assert M2 = M
-    #assert M2 != blosum50
-    
 
-#def test_selection():
-	#return None
-	# Very random and hard to test, but I want to make sure that my weights
-	# are working and that I'm sampling with replacement: 
-	#L = ["a", "b", "c"]
-	#w = [0, 0, 1]
-	#assert selection(L, w) == ["c", "c", "c"]
-
-#def test_scale_scores():
-	#return None
-	
-	# just make sure I'm doing what I said: largest/smallest is 10^selectivePressure
-	# and the sum is 1.
-	#a,b = scaleScores([1, 2], 1)
-	#assert a+b == 1
-	#assert b/a == 10
 	
 
 
