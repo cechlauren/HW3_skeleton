@@ -43,7 +43,7 @@ blosum62 = read_substitution_matrix("BLOSUM62")
 matio = read_substitution_matrix("MATIO")
 pam100 = read_substitution_matrix("PAM100")
 pam250 = read_substitution_matrix("PAM250")
-optblosum50 = read_substitution_matrix("optimalblosum.txt")
+#optblosum50 = read_substitution_matrix("optimalblosum.txt")
 
 matrix_names = ["BLOSUM50", "BLOSUM62", "MATIO", "PAM100", "PAM250"]
 matrices = map(read_substitution_matrix, matrix_names)
